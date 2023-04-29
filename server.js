@@ -4,6 +4,7 @@ import cors from "cors";
 import("dotenv/config");
 import bodyParser from "body-parser";
 
+import userRouter from "./Modules/Routers/register.js";
 import movieRouter from "./Modules/Routers/movie.js";
 import directorRouter from "./Modules/Routers/director.js";
 
@@ -24,6 +25,7 @@ app.get("/", (req, res) => {
   res.send("<h1>Hello MovieAPI</h1>");
 });
 
+app.use("/api/user", userRouter);
 app.use("/api/movies", movieRouter);
 app.use("/api/directors", directorRouter);
 
