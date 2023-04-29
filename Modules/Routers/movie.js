@@ -4,7 +4,19 @@ import Movie from "../Models/Movie.js";
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  const promise = Movie.MovieSchema.find({});
+  const promise = Movie.MovieSchema.aggregate([
+    {
+      $lookup: {
+        from: "directors",
+        localField: "director_id",
+        foreignField: "_id",
+        as: "director",
+      },
+    },
+    {
+      $unwind: "$director",
+    },
+  ]);
   promise
     .then(data => {
       res.json(data);
