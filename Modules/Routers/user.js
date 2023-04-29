@@ -47,24 +47,13 @@ router.post("/authenticate", async (req, res) => {
         message: "Authentication failed, wrong password",
       });
     } else {
-      console.log("else kısmına girdim ben");
       const payload = {
         username,
       };
 
-      console.log(
-        "ben neredeyim neden buraya log basıyorum ?",
-        req.app.get("api_secret_key"),
-        "çünkü neden buraya log basmayayım ? "
-      );
-
       const token = jwt.sign(payload, req.app.get("api_secret_key"), {
         expiresIn: 720, // 12 saat
       });
-
-      console.log(
-        "buraya da basarım çünkü bedava sadece biraz zaman kaybederim bu sayede hatayı bulabilirim."
-      );
 
       res.json({
         status: true,

@@ -24,11 +24,15 @@ app.use(
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//Middleware
+import verifyToken from "./Modules/Middlewares/verifyToken.js";
+
 app.get("/", (req, res) => {
   res.send("<h1>Hello MovieAPI</h1>");
 });
 
 app.use("/api/user", userRouter);
+app.use("/api", verifyToken);
 app.use("/api/movies", movieRouter);
 app.use("/api/directors", directorRouter);
 
