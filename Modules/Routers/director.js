@@ -115,4 +115,42 @@ router.get("/:director_id", (req, res) => {
       req.json(err);
     });
 });
+
+router.put("/:director_id", (req, res, next) => {
+  //   res.send(req.params); urlden parametle almak
+  const promise = Director.DirectorSchema.findByIdAndUpdate(
+    req.params.director_id,
+    req.body,
+    {
+      new: true,
+    }
+  );
+
+  promise
+    .then(data => {
+      res.json(data);
+    })
+    .catch(err => {
+      res.json(err);
+    });
+});
+
+router.delete("/:director_id", (req, res, next) => {
+  //   res.send(req.params); urlden parametle almak
+  const promise = Director.DirectorSchema.findByIdAndRemove(
+    req.params.director_id
+  );
+
+  promise
+    .then(data => {
+      res.json({
+        status: 1,
+        message: `${data.name} isimli yönetmen silindi`,
+      });
+    })
+    .catch(err => {
+      res.json(err);
+    });
+});
+
 export default router;
