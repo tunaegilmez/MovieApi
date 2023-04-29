@@ -5,6 +5,7 @@ import("dotenv/config");
 import bodyParser from "body-parser";
 
 import movieRouter from "./Modules/Routers/movie.js";
+import directorRouter from "./Modules/Routers/director.js";
 
 const app = express();
 const port = process.env.port || 3000;
@@ -24,6 +25,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/movies", movieRouter);
+app.use("/api/directors", directorRouter);
 
 // // error handler
 // app.use((err, req, res, next) => {
