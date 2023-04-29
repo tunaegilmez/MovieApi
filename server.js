@@ -4,13 +4,16 @@ import cors from "cors";
 import("dotenv/config");
 import bodyParser from "body-parser";
 
-import userRouter from "./Modules/Routers/register.js";
+import userRouter from "./Modules/Routers/user.js";
 import movieRouter from "./Modules/Routers/movie.js";
 import directorRouter from "./Modules/Routers/director.js";
+
+import config from "./Modules/config.js";
 
 const app = express();
 const port = process.env.port || 3000;
 
+app.set("api_secret_key", config.api_secret_key);
 app.use(express.json());
 app.use(
   cors({
