@@ -6,7 +6,7 @@ const should = chai.should();
 chai.use(chaiHttp);
 
 describe("Node Server", () => {
-  it("(GET /) anasayfayı döndürür", done => {
+  it("(GET /) return homepage", done => {
     chai
       .request(server)
       .get("/")

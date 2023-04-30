@@ -31,7 +31,7 @@ app.get("/", (req, res) => {
   res.send("<h1>Hello MovieAPI</h1>");
 });
 
-app.use("/api/user", userRouter);
+app.use("/", userRouter);
 app.use("/api", verifyToken);
 app.use("/api/movies", movieRouter);
 app.use("/api/directors", directorRouter);
